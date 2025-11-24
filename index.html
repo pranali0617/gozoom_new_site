@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Living Forever Exploration</title>
-    <style>
+   <style>
         * {
             margin: 0;
             padding: 0;
@@ -13,15 +13,19 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             background: #f8fafc;
             color: #334155;
             line-height: 1.6;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
@@ -30,58 +34,63 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             width: 100%;
             max-width: 600px;
-            height: 800px;
+            height: 95vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
         .content-area {
-            padding: 32px;
+            padding: clamp(12px, 2vh, 20px);
             flex: 1;
-            overflow-y: auto;
+            overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
-        h1 {
-            color: #1e293b;
-            margin-bottom: 16px;
-            font-size: 28px;
-            text-align: center;
-        }
+      h1 {
+    color: #1e293b;
+    margin-bottom: clamp(8px, 1.5vh, 16px);
+    margin-top: clamp(40px, 6vh, 60px); /* Added to avoid overlap with logo */
+    font-size: clamp(20px, 3.5vh, 28px);
+    text-align: center;
+    line-height: 1.2;
+}
 
         h2 {
             color: #475569;
-            margin: 20px 0 12px;
-            font-size: 22px;
+            margin: clamp(10px, 2vh, 20px) 0 clamp(6px, 1vh, 12px);
+            font-size: clamp(16px, 2.8vh, 22px);
             border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 6px;
+            padding-bottom: 4px;
+            line-height: 1.2;
         }
 
         h3 {
             color: #1e293b;
-            margin: 16px 0 8px;
-            font-size: 18px;
+            margin: clamp(8px, 1.5vh, 16px) 0 clamp(4px, 0.8vh, 8px);
+            font-size: clamp(14px, 2.2vh, 18px);
+            line-height: 1.2;
         }
 
         p {
-            margin-bottom: 12px;
+            margin-bottom: clamp(6px, 1vh, 12px);
             color: #475569;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: clamp(13px, 1.8vh, 16px);
+            line-height: 1.4;
         }
 
         .intro {
-            font-size: 17px;
-            color: #1e293b;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .survey-viz {
-            margin: 24px 0;
+    font-size: clamp(14px, 2vh, 17px);
+    color: #1e293b;
+    text-align: center;
+    margin-bottom: clamp(12px, 2vh, 24px);
+    margin-top: clamp(70px, 9vh, 90px); /* Increased from 60px to 70px */
+}    .survey-viz {
+            margin: clamp(12px, 2vh, 24px) 0;
             background: #f8fafc;
-            padding: 16px;
+            padding: clamp(8px, 1.5vh, 16px);
             border-radius: 8px;
             border-left: 3px solid #3b82f6;
         }
@@ -89,45 +98,71 @@
         .survey-row {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: clamp(5px, 1vh, 10px);
         }
 
         .survey-label {
-            width: 70px;
+            width: clamp(50px, 10vw, 70px);
             font-weight: 600;
             color: #1e293b;
+            font-size: clamp(12px, 1.6vh, 14px);
         }
 
         .survey-bar {
-            height: 16px;
+            height: clamp(12px, 1.8vh, 16px);
             border-radius: 8px;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
         .survey-percent {
             font-weight: 600;
             color: #1e293b;
-            min-width: 35px;
+            min-width: 30px;
+            font-size: clamp(12px, 1.6vh, 14px);
         }
 
-        .choice-buttons {
-            margin: 32px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+       .choice-buttons {
+    margin: clamp(16px, 3vh, 32px) 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 12px);
+    padding-bottom: clamp(10px, 2vh, 20px); /* Added bottom padding */
+}
+
+/* Add scrollable wrapper for second page content */
+.reasons-section {
+    margin: clamp(12px, 2vh, 24px) 0;
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 5px;
+    max-height: 50vh; /* Limit height to ensure button is visible */
+}
+
+.reasons-section::-webkit-scrollbar {
+    width: 4px;
+}
+
+.reasons-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.reasons-section::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
 
         .choice-btn {
             display: block;
             width: 100%;
-            padding: 16px;
+            padding: clamp(10px, 1.8vh, 16px);
             border-radius: 8px;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: clamp(13px, 1.8vh, 16px);
             font-weight: 600;
             transition: all 0.2s ease;
             text-align: center;
+            line-height: 1.3;
         }
 
         .choice-btn.purple {
@@ -151,13 +186,29 @@
         }
 
         .reasons-section {
-            margin: 24px 0;
+            margin: clamp(12px, 2vh, 24px) 0;
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 5px;
+        }
+
+        .reasons-section::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .reasons-section::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .reasons-section::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
         }
 
         .reason-card {
             background: white;
-            padding: 16px;
-            margin: 12px 0;
+            padding: clamp(10px, 1.5vh, 16px);
+            margin: clamp(6px, 1vh, 12px) 0;
             border-radius: 8px;
             border: 1px solid #e2e8f0;
             transition: all 0.2s;
@@ -171,55 +222,58 @@
 
         .reason-title {
             font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 6px;
+            font-size: clamp(13px, 1.8vh, 16px);
+            margin-bottom: 4px;
             color: #1e293b;
+            line-height: 1.3;
         }
 
         .reason-content {
-            font-size: 15px;
+            font-size: clamp(12px, 1.6vh, 15px);
             color: #475569;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .reflection-section {
             background: #f8fafc;
-            padding: 20px;
+            padding: clamp(12px, 2vh, 20px);
             border-radius: 8px;
-            margin: 20px 0;
+            margin: clamp(10px, 1.5vh, 20px) 0;
             border: 1px solid #e2e8f0;
         }
 
         .reflection-question {
             font-weight: 600;
-            margin: 10px 0;
+            margin: clamp(5px, 1vh, 10px) 0;
             color: #374151;
-            font-size: 16px;
+            font-size: clamp(12px, 1.6vh, 16px);
+            line-height: 1.3;
         }
 
         .followup-section {
-            margin-top: 28px;
-            padding-top: 20px;
+            margin-top: clamp(14px, 2.5vh, 28px);
+            padding-top: clamp(10px, 1.5vh, 20px);
             border-top: 1px solid #e2e8f0;
         }
 
         .followup-questions {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 14px;
+            gap: clamp(6px, 1vh, 10px);
+            margin-top: clamp(8px, 1.2vh, 14px);
         }
 
         .followup-btn {
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 6px;
-            padding: 12px 14px;
+            padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.5vh, 14px);
             text-align: left;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 15px;
+            font-size: clamp(12px, 1.6vh, 15px);
             color: #475569;
+            line-height: 1.3;
         }
 
         .followup-btn:hover {
@@ -229,18 +283,18 @@
         }
 
         .navigation-buttons {
-            margin-top: 28px;
+            margin-top: clamp(14px, 2.5vh, 28px);
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
 
         .nav-btn {
-            padding: 12px 20px;
+            padding: clamp(8px, 1.2vh, 12px) clamp(12px, 2vh, 20px);
             border: none;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: clamp(12px, 1.6vh, 15px);
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -270,7 +324,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -281,16 +334,15 @@
             from {
                 opacity: 1;
             }
-
             to {
                 opacity: 0;
             }
         }
 
         .chat-input-container {
-            margin-top: 28px;
+            margin-top: clamp(14px, 2.5vh, 28px);
             border-top: 1px solid #e2e8f0;
-            padding-top: 20px;
+            padding-top: clamp(10px, 1.5vh, 20px);
         }
 
         .chat-input {
@@ -298,7 +350,7 @@
             align-items: center;
             background: #f8fafc;
             border-radius: 20px;
-            padding: 10px 14px;
+            padding: clamp(6px, 1vh, 10px) clamp(10px, 1.5vh, 14px);
             border: 1px solid #e2e8f0;
         }
 
@@ -307,8 +359,8 @@
             border: none;
             background: transparent;
             outline: none;
-            font-size: 15px;
-            padding: 6px 10px;
+            font-size: clamp(12px, 1.6vh, 15px);
+            padding: 4px 8px;
         }
 
         .chat-input button {
@@ -316,8 +368,8 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: clamp(28px, 4vh, 36px);
+            height: clamp(28px, 4vh, 36px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -329,21 +381,22 @@
             background: #7c3aed;
         }
 
-        .back-btn {
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            color: #475569;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 16px;
-            padding: 8px 12px;
-            transition: all 0.2s;
-        }
+       .back-btn {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #475569;
+    cursor: pointer;
+    font-size: clamp(11px, 1.5vh, 14px);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: clamp(8px, 1.2vh, 16px) 0 clamp(16px, 2.5vh, 24px); /* Added bottom margin */
+    padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1.2vh, 12px);
+    transition: all 0.2s;
+    width: fit-content;
+}
 
         .back-btn:hover {
             background: #e2e8f0;
@@ -351,7 +404,7 @@
         }
 
         .full-answer-section {
-            margin: 20px 0;
+            margin: clamp(10px, 1.5vh, 20px) 0;
         }
 
         .answer-list {
@@ -360,10 +413,11 @@
         }
 
         .answer-list li {
-            padding: 8px 0;
+            padding: clamp(4px, 0.8vh, 8px) 0;
             color: #475569;
-            line-height: 1.6;
+            line-height: 1.4;
             border-bottom: 1px solid #f1f5f9;
+            font-size: clamp(12px, 1.6vh, 14px);
         }
 
         .answer-list li:last-child {
@@ -376,10 +430,383 @@
 
         .sentiment-choice {
             text-align: center;
-            margin: 20px 0;
+            margin: clamp(10px, 1.5vh, 20px) 0;
             font-style: italic;
             color: #64748b;
+            font-size: clamp(13px, 1.8vh, 16px);
         }
+       .goz-hero-logo {
+    position: absolute;
+    top: clamp(18px, 20vh, 30px); /* Aligned with first line of text */
+    left: clamp(12px, 8vh, 2px);
+    z-index: 10;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: clamp(24px, 3vh, 32px);
+    height: clamp(24px, 3vh, 32px);
+}
+
+.goz-hero-logo:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.goz-hero-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+     .goz-hero {
+    text-align: center;
+    margin: 0 0 clamp(20px, 3.5vh, 32px); /* Remove top margin, keep bottom */
+    padding: clamp(16px, 3vh, 32px) clamp(12px, 2vh, 20px);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    min-height: clamp(120px, 20vh, 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.goz-logo {
+    font-size: clamp(22px, 4vh, 32px); /* Larger text */
+    font-weight: 700;
+    margin-bottom: clamp(8px, 1.5vh, 16px);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.goz-tagline {
+    font-size: clamp(16px, 2.8vh, 24px); /* Larger */
+    font-weight: 500;
+    margin-bottom: clamp(8px, 1.5vh, 16px);
+    opacity: 0.95;
+    line-height: 1.3;
+}
+
+.goz-subtitle {
+    font-size: clamp(14px, 2.2vh, 18px); /* Larger */
+    opacity: 0.85;
+    max-width: 500px; /* Wider */
+    margin: 0 auto;
+    line-height: 1.5; /* Better line height */
+}
+        .chat-interface {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .chat-container {
+    background: white;
+    border-radius: 16px; /* Larger radius */
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* Enhanced shadow */
+    overflow: hidden;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    margin-top: clamp(12px, 2vh, 24px); /* More space above */
+}
+        .chat-header {
+            background: #f8fafc;
+            padding: clamp(10px, 1.5vh, 16px) clamp(12px, 2vh, 20px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .chat-title {
+            font-size: clamp(13px, 1.8vh, 16px);
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .chat-subtitle {
+            font-size: clamp(11px, 1.5vh, 14px);
+            color: #64748b;
+        }
+
+        .chat-input-area {
+    padding: clamp(12px, 2vh, 20px);
+    flex: none; /* Changed from flex: 1 */
+    display: flex;
+    flex-direction: column;
+    min-height: auto; /* Changed from 0 */
+}
+
+        .chat-textarea {
+    width: 100%;
+    flex: none; /* Changed from flex: 1 */
+    min-height: 80px; /* Changed from 0 */
+    max-height: 120px; /* Added */
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: clamp(10px, 1.5vh, 16px);
+    font-size: clamp(12px, 1.6vh, 15px);
+    resize: none;
+    font-family: inherit;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    background: #fafbfc;
+}
+
+        .chat-textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .chat-textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .chat-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: clamp(8px, 1.2vh, 16px);
+        }
+
+        .chat-hint {
+            font-size: clamp(11px, 1.4vh, 13px);
+            color: #94a3b8;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: clamp(8px, 1.2vh, 10px) clamp(16px, 2.5vh, 24px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: clamp(4px, 0.8vh, 8px);
+            font-size: clamp(12px, 1.6vh, 15px);
+            box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn svg {
+            width: clamp(14px, 2vh, 18px);
+            height: clamp(14px, 2vh, 18px);
+        }
+  .goz-branding {
+    position: absolute;
+    top: clamp(20px, 22vh, 55px); /* Increased from 16px to 24px */
+    z-index: 100;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    width: clamp(16px, 4vh, 40px);
+    height: clamp(40px, 4vh, 40px);
+    
+}
+
+
+
+.goz-branding:hover {
+    transform: translateY(-1px);
+    opacity: 0.8; /* Added hover effect */
+}
+.goz-branding img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.goz-branding-reasons {
+    position: absolute;
+    top: clamp(16px, 80vh, 56px);
+    left: clamp(12px, 2vh, 20px); /* Complete left corner */
+    z-index: 100;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    width: clamp(24px, 3.5vh, 36px);
+    height: clamp(24px, 3.5vh, 36px);
+}
+
+
+.goz-branding-reasons img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.goz-branding-reasons:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
+        @media (max-width: 640px) {
+            .container {
+        border-radius: 0;
+        height: 100vh;
+        padding: 0 8px; /* Added side padding */
+    }
+    
+    body {
+        padding: 0;
+    }
+    
+    .content-area {
+        padding: 16px 12px; /* Adjusted padding */
+    }
+    
+    /* Ensure button has enough space */
+    .choice-btn {
+        padding: 14px 12px; /* Adjusted padding */
+        font-size: 15px;
+        margin-bottom: 8px; /* Added bottom margin */
+    }
+            /* Third page specific mobile improvements */
+    .goz-hero {
+        margin: 24px 0 20px; /* More spacing on mobile */
+        padding: 28px 20px; /* More padding */
+        border-radius: 20px; /* Even larger on mobile */
+        min-height: 140px; /* Taller on mobile */
+    }
+    
+    .goz-logo {
+        font-size: 26px; /* Bigger on mobile */
+    }
+    
+    .goz-subtitle {
+        font-size: 16px; /* Bigger on mobile */
+        line-height: 1.6;
+    }
+    
+    .chat-container {
+        margin-top: 20px; /* More space below purple section */
+        border-radius: 20px; /* Larger radius on mobile */
+    }
+    
+    .chat-textarea {
+        min-height: 120px; /* Bigger textarea on mobile */
+        font-size: 16px;
+        padding: 16px; /* More padding */
+    }
+    
+    .submit-btn {
+        padding: 14px 24px; /* Bigger button on mobile */
+        font-size: 16px;
+    }
+        }
+
+        @media (max-height: 600px) {
+            .container {
+                height: 100vh;
+            }
+            
+            .content-area {
+                padding: 8px;
+            }
+        }
+
+        .scrollable-content {
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 5px;
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+     @media (max-width: 640px) {
+    h1 {
+        margin-top: clamp(30px, 5vh, 50px);
+        line-height: 1.2;
+        width: 100%;
+    }
+    
+    /* Keep title and logo in one line with auto font adjustment */
+    h1 div {
+        gap: 10px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow: visible;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    h1 img {
+        width: 24px !important;
+        height: 24px !important;
+        flex-shrink: 0;
+    }
+    
+    h1 span {
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: clip;
+        flex-shrink: 1;
+        min-width: 0;
+        /* Font size will automatically adjust based on the clamp in main h1 */
+    }
+    
+    /* Remove any scrolling */
+    .content-area h1 {
+        overflow-x: visible;
+        padding-bottom: 0;
+    }
+    
+    .content-area h1::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Make the main h1 font size more responsive */
+    h1 {
+        font-size: clamp(14px, 3.5vw, 20px); /* Use viewport width for better scaling */
+    }
+}
     </style>
 </head>
 
@@ -413,50 +840,62 @@
         // Content data
         const contentData = {
             initial: {
-                title: "",
-                content: `
-                    <div class="intro">
-                        <p><strong>You said: Yes</strong>. Thank you for sharing your answer. That's a choice that many people share.</p>
-                    </div>
-                    
-                    <div class="survey-viz">
-                        <h3>Survey Results:</h3>
-                        
-                        <div class="survey-row">
-                            <div class="survey-label">Yes</div>
-                            <div class="survey-bar" style="background: #10b981; width: 33%;"></div>
-                            <div class="survey-percent">33%</div>
-                        </div>
-                        
-                        <div class="survey-row">
-                            <div class="survey-label">No</div>
-                            <div class="survey-bar" style="background: #ef4444; width: 42%;"></div>
-                            <div class="survey-percent">42%</div>
-                        </div>
-                        
-                        <div class="survey-row">
-                            <div class="survey-label">Unsure</div>
-                            <div class="survey-bar" style="background: #6b7280; width: 25%;"></div>
-                            <div class="survey-percent">25%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="sentiment-choice">
-                        What would you like to explore next?
-                    </div>
-                    
-                    <div class="choice-buttons">
-                        <button class="choice-btn purple" id="agree-btn">
-                            Click to see what others who agree with you have to say
-                        </button>
-                        <button class="choice-btn grey" id="challenge-btn">
-                            Click to see why you may be wrong
-                        </button>
-                    </div>
-                `
-            },
+    title: "",
+    content: `
+        <div class="intro">
+            <p>
+                <a href="https://gozoom.com" target="_blank" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <img src="https://gozoom.com/static/favicon.png" alt="Goz Logo" style="width: 26px; height: 26px;">
+                </a>
+                <strong>You said: Yes</strong>. Thank you for sharing your answer. That's a choice that many people share.
+            </p>
+        </div>
+        
+        <div class="survey-viz">
+            <h3>Survey Results:</h3>
+            
+            <div class="survey-row">
+                <div class="survey-label">Yes</div>
+                <div class="survey-bar" style="background: #10b981; width: 33%;"></div>
+                <div class="survey-percent">33%</div>
+            </div>
+            
+            <div class="survey-row">
+                <div class="survey-label">No</div>
+                <div class="survey-bar" style="background: #ef4444; width: 42%;"></div>
+                <div class="survey-percent">42%</div>
+            </div>
+            
+            <div class="survey-row">
+                <div class="survey-label">Unsure</div>
+                <div class="survey-bar" style="background: #6b7280; width: 25%;"></div>
+                <div class="survey-percent">25%</div>
+            </div>
+        </div>
+        
+        <div class="sentiment-choice">
+            What would you like to explore next?
+        </div>
+        
+        <div class="choice-buttons">
+            <button class="choice-btn purple" id="agree-btn">
+                Click to see what others who agree with you have to say
+            </button>
+            <button class="choice-btn grey" id="challenge-btn">
+                Click to see why you may be wrong
+            </button>
+        </div>
+    `
+},
             reasonsFor: {
-                title: "What Others Who Agree With You Say",
+                title: `
+        <div style="display: flex; align-items: center; gap: 12px; justify-content: center;">
+            <a href="https://gozoom.com" target="_blank" style="display: flex; align-items: center;">
+                <img src="https://gozoom.com/static/favicon.png" alt="Goz Logo" style="width: 26px; height: 26px;">
+            </a>
+            <span>What Others Who Agree With You Say</span>
+        </div>
+    `,
                 content: `
                     <button class="back-btn" id="back-btn">
                         ← Back
@@ -499,7 +938,14 @@
                 `
             },
             reasonsAgainst: {
-                title: "Why You May Be Wrong",
+                title: `
+       <div style="display: flex; align-items: center; gap: 60px;">
+            <a href="https://gozoom.com" target="_blank" style="display: flex; align-items: center;">
+                <img src="https://gozoom.com/static/favicon.png" alt="Goz Logo" style="width: 26px; height: 26px;">
+            </a>
+            <span>Why You May Be Wrong</span>
+        </div>
+    `,
                 content: `
                     <button class="back-btn" id="back-btn">
                         ← Back
